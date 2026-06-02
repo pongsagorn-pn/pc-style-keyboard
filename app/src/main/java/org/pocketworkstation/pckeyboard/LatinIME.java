@@ -727,6 +727,11 @@ public class LatinIME extends InputMethodService implements
     @Override
     public void onStartInput(EditorInfo attribute, boolean restarting) {
         super.onStartInput(attribute, restarting);
+        if(attribute == null || attribute.inputType == 0)
+            // don't do anything further if we don't have any actual field
+            // or else back button may freeze
+            return;
+
         // setCandidatesViewShown(true);
         setCandidatesViewShownInternal(true, false);
         super.setCandidatesViewShown(true);
