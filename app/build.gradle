@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 36
+    compileSdkVersion = 37
     namespace = 'org.pocketworkstation.pckeyboard'
     defaultConfig {
         applicationId = 'org.pocketworkstation.pckeyboard'
         minSdkVersion = 21
-        targetSdkVersion = 36
-        versionCode = 1042008
-        versionName = "1.42.8ak"
+        targetSdkVersion = 37
+        versionCode = 1042009
+        versionName = "1.42.9ak"
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -35,17 +35,27 @@ android {
     }
     externalNativeBuild {
         cmake {
-            path "CMakeLists.txt"
+            path = "CMakeLists.txt"
         }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     productFlavors {
     }
     lintOptions {
-        checkReleaseBuilds false
+        checkReleaseBuilds = false
         // Or, if you prefer, you can continue to check for errors in release builds,
         // but continue the build even when errors are found:
-        //abortOnError false
+        //abortOnError = false
     }
+
+    // gradle.projectsEvaluated {
+    //    tasks.withType(JavaCompile) {
+    //        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+    //    }
+    // }
 }
 
 dependencies {
