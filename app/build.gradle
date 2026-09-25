@@ -4,7 +4,7 @@ android {
     compileSdkVersion 36
     namespace = 'org.pocketworkstation.pckeyboard'
     defaultConfig {
-        applicationId = 'org.pocketworkstation.pckeyboard'
+        applicationId = 'com.custom.pckeyboard'
         minSdkVersion = 21
         targetSdkVersion = 36
         versionCode = 1042008
