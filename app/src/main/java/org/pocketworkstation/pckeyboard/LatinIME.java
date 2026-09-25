@@ -498,7 +498,7 @@ public class LatinIME extends InputMethodService implements
                     PendingIntent.getBroadcast(getApplicationContext(), 2, configIntent,
 					       PendingIntent.FLAG_IMMUTABLE);
 
-            String title = "Show Hacker's Keyboard";
+            String title = "Show PC Style Keyboard";
             String body = "Select this to open the keyboard. Disable in settings.";
 
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
