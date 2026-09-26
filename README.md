@@ -1,50 +1,93 @@
-## Status of this fork ##
+# PC Style Keyboard (for Android)
 
-This is a fork of the original hacker's keyboard by Klaus Weidner. The original had fallen behind on evolution Android evolution, and was not even compilable any more in today's environments. I took it upon myself to bring it up to Sdk 36 level (Android 16), and got dictionaries working again.
+A full 5-row PC-style soft keyboard for Android with working `Ctrl`, `Alt`, `Esc`, `Tab`, and arrow keys—specially rebranded to avoid false-positive detections by mobile banking apps.
 
-[Releases here](../../releases)
+[![Download APK](https://img.shields.io/badge/Download-Latest%20APK-brightgreen?style=for-the-badge&logo=android)](../../releases/latest)
+[![Build APK](https://github.com/pongsagorn-pn/pc-style-keyboard/actions/workflows/build.yml/badge.svg)](../../actions)
 
-## Dictionaries ##
+---
 
-Hacker's keyboard uses Anysoft keyboard's dictionaries (compatible APIs), which you find easily on F-Droid, *except* the English dictionary. Probably because English in built into Anysoft keyboard, and thus it doesn't need any external dictionary for it. Fortunately, you can still find an older version at [Apkpure](https://apkpure.com/english-for-anysoftkeyboard/com.anysoftkeyboard.languagepack.mirfatif.english).
+## 💡 Why This Fork Exists
 
+This repository is a fork of [Alain Knaff's modernized version](https://github.com/AlainKnaff/hackerskeyboard) of the legendary **Hacker's Keyboard** originally created by Klaus Weidner.
 
-# Original README.md #
+### The Banking App Problem
+Many mobile banking apps (particularly in Thailand and across Southeast Asia adhering to central bank anti-fraud directives) use automated security scanners on installed apps. Rather than analyzing actual app behavior, they block users based on:
+1. **Blacklisted Package IDs:** `org.pocketworkstation.pckeyboard`
+2. **Flagged Keywords:** Any app with the word `"Hacker"` in its display name or manifest.
 
-## Overview ##
+Even though Hacker's Keyboard is completely open-source, safe, and has **zero internet permissions**, it gets falsely flagged as a "malicious tool" or RAT (Remote Administration Tool).
 
-**WARNING:** *This is a rather ancient project that was originally developed back in 2011 based on the Android 2.3 (Gingerbread) AOSP keyboard. While it still works as-is for many users, it would need some major rewrites to work with newer APIs, and some features such as language switching or popup keys don't work right on modern Android systems. I'm not currently planning on significant updates, and it's possible that it will stop working on modern devices or will no longer be updateable via the Google Play store due to minimum API level requirements. Play Store requires targeting API level 29 (Android 10), while the code was written for API level 9 (Android 2.3) from 2011.*
+### The Solution in This Fork:
+- 🛡️ **New Application ID:** Changed from `org.pocketworkstation.pckeyboard` to `com.custom.pckeyboard`.
+- 🏷️ **Clean Display Name:** Replaced all occurrences of `"Hacker's Keyboard"` with **`PC Style Keyboard`** across the manifest, strings, and launcher activities.
+- 🚀 **Modern Android Compatibility:** Targets modern Android SDKs (Android 14–16 / API 34–36) with working dictionaries and modern CMake/NDK toolchains.
+- ⚡ **Automated Cloud CI/CD:** Auto-compiles clean release APKs via GitHub Actions.
 
-Are you missing the key layout you're used to from your computer when using an Android device? This software keyboard has separate number keys, punctuation in the usual places, and arrow keys. It is based on the AOSP Gingerbread soft keyboard, so it supports multitouch for the modifier keys.
+---
 
-This keyboard is especially useful if you use ConnectBot for SSH access. It provides working Tab/Ctrl/Esc keys, and the arrow keys are essential for devices such as the Xoom tablet or Nexus S that don't have a trackball or D-Pad.
+## 📥 Download & Installation
 
-The supported keyboard layouts include Armenian (Հայերեն), Arabic (العربية),
-British (en\_GB), Bulgarian (български език), Czech (Čeština), Danish (dansk),
-Carpalx English (language "en-CX"), Dvorak English (language "en-DV"), English
-(QWERTY), Finnish (Suomi), French (Français, AZERTY), German (Deutsch, QWERTZ),
-German Neo2 (Deutsch, language "de-NE"),
-Greek (ελληνικά), Hebrew (עברית), Hungarian (Magyar), Italian (Italiano), Lao
-(ພາສາລາວ), Norwegian (Norsk bokmål), Persian (فارسی), Portuguese (Português),
-Romanian (Română), Russian (Русский), Russian phonetic (Русский, ru-rPH),
-Serbian (Српски), Slovak (Slovenčina), Slovenian
-(Slovenščina)/Bosnian/Croatian/Latin Serbian, Spanish (Español, Español
-Latinoamérica), Swedish (Svenska), Tamil (தமிழ்), Thai (ไทย), Turkish (Türkçe),
-and Ukrainian (українська мова).
+1. Go to the **[Releases Page](../../releases/latest)** and download `PC-Style-Keyboard-v1.0.apk`.
+2. **Important:** If you have the original *Hacker's Keyboard* installed, **uninstall it first** so your phone's package manager removes the blacklisted ID.
+3. Install the downloaded `.apk` file.
+4. Enable the keyboard on your device:
+   - Go to **Settings** → **System** → **Languages & input** → **On-screen keyboard** → **Manage on-screen keyboards**.
+   - Turn on **PC Style Keyboard**.
+5. Switch to it when typing in terminal emulators like **Termux**, **ConnectBot**, or text editors.
 
-To install, get **[Hacker's
-Keyboard](https://play.google.com/store/apps/details?id=org.pocketworkstation.pckeyboard)**
-from the Play Store, plus optional [dictionary
-packs](https://play.google.com/store/apps/developer?id=Klaus+Weidner).
+---
 
-## Additional resources ##
+## ✨ Features
 
-See the **[Release Notes](https://github.com/klausw/hackerskeyboard/wiki/ReleaseNotes)** for changes in the Play Store released versions.
+- **Full PC Layout:** Includes separate number rows, Esc, Tab, Ctrl, Alt, and arrow keys.
+- **Multitouch Modifier Support:** Hold `Ctrl` or `Alt` while pressing other keys (e.g., `Ctrl+C`, `Ctrl+Z`, `Ctrl+A`).
+- **Ideal for Developers & Sysadmins:** Perfect for SSH, terminal sessions, VIM, Nano, and coding on mobile.
+- **100% Offline & Private:** Requires **no internet access permissions** (`android.permission.INTERNET` is not even declared).
+- **Multiple Keyboard Themes:** Gingerbread, Ice Cream Sandwich, Material Dark, Material Light, and High Contrast.
 
-Having problems? See the **[User's Guide](https://github.com/klausw/hackerskeyboard/wiki/UsersGuide)** and **[FAQ](https://github.com/klausw/hackerskeyboard/wiki/FrequentlyAskedQuestions)**, and check the [issue tracker](https://github.com/klausw/hackerskeyboard/issues) for known bugs or filing new ones.
+---
 
-Comments, requests, or contributions? Join the [discussion group](http://groups.google.com/group/hackerskeyboard/).
+## 🌐 Supported Languages & Layouts
 
-Application developers: see [the page about keyboard support in applications](https://github.com/klausw/hackerskeyboard/wiki/KeyboardSupportInApplications) if you want to enable the additional keys in your Android application, the same method also works for hardware USB or Bluetooth keyboards.
+Arabic, Armenian, Bulgarian, Czech, Danish, English (QWERTY, Dvorak, Carpalx, UK), Finnish, French (AZERTY), German (QWERTZ, Neo2), Greek, Hebrew, Hungarian, Italian, Lao, Norwegian, Persian, Portuguese, Romanian, Russian, Serbian, Slovak, Slovenian/Croatian, Spanish, Swedish, Tamil, Thai (ไทย), Turkish, and Ukrainian.
 
-![hk-5row-en-s.png](hk-5row-en-s.png)
+---
+
+## 📚 Dictionaries
+
+This keyboard uses AnySoftKeyboard-compatible dictionary packages:
+- You can find most language packs easily on **F-Droid**.
+- For the English dictionary pack, you can find the compatible standalone pack via [Apkpure (AnySoftKeyboard English pack)](https://apkpure.com/english-for-anysoftkeyboard/com.anysoftkeyboard.languagepack.mirfatif.english).
+
+---
+
+## 🛠️ Building from Source
+
+To build locally using Linux / macOS:
+
+```bash
+# Clone the repository
+git clone https://github.com/pongsagorn-pn/pc-style-keyboard.git
+cd pc-style-keyboard
+
+# Compile the debug APK
+chmod +x gradlew
+./gradlew assembleDebug
+```
+The output APK will be generated at:
+`app/build/outputs/apk/debug/app-debug.apk`
+
+---
+
+## 🙏 Credits & Acknowledgments
+
+- **[Klaus Weidner](https://github.com/klausw/hackerskeyboard):** Original creator of Hacker's Keyboard (2011).
+- **[Alain Knaff](https://github.com/AlainKnaff/hackerskeyboard):** Modernized the codebase to modern Gradle, CMake, and Android SDK 34–36.
+- **[pongsagorn-pn](https://github.com/pongsagorn-pn/pc-style-keyboard):** Rebranded package ID, manifest labels, and GitHub Actions CI/CD pipeline to resolve banking app false-positive issues.
+
+---
+
+## 📄 License
+
+This project is licensed under the **Apache License 2.0**, consistent with the original Android Open Source Project (AOSP) soft keyboard and upstream repositories.
